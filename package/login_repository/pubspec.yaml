@@ -11,6 +11,10 @@ dependencies:
   flutter:
     sdk: flutter
   mocktail: ^0.3.0
+  api:
+    path: ../network/api
+  client:
+    path: ../network/client
 
 dev_dependencies:
   flutter_test:
