@@ -23,8 +23,12 @@ class App extends StatelessWidget {
         RepositoryProvider.value(value: _homeRepository),
       ],
       child: MultiBlocProvider(
-        providers: [BlocProvider<LoginBloc>(create: (context) => LoginBloc())],
-        child: const MaterialApp(
+        providers: [
+          BlocProvider<LoginBloc>(
+            create: (context) => LoginBloc(loginRepository: _loginRepository),
+          )
+        ],
+        child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Store',
           home: LoginView(),

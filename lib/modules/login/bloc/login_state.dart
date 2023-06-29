@@ -1,6 +1,17 @@
 part of 'login_bloc.dart';
 
-@immutable
-abstract class LoginState {}
+class LoginState extends Equatable {
+  const LoginState({this.loginModels, this.status = GlobalStatusState.initial});
+  final LoginModels? loginModels;
+  final GlobalStatusState status;
 
-class LoginInitial extends LoginState {}
+  LoginState copyWith({LoginModels? loginModels, GlobalStatusState? status}) {
+    return LoginState(
+        loginModels: loginModels ?? this.loginModels,
+        status: status ?? this.status,);
+  }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [loginModels, status];
+}

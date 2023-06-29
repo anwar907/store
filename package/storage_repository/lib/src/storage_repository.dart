@@ -1,13 +1,10 @@
-import 'dart:io';
-
 import 'package:hive/hive.dart';
 
 class StorageRepository {
   static const token = 'token';
 
-  static Future<void> init() async {
-    final directory = Directory.current.path;
-    Hive.init(directory);
+  static Future<void> init(String path) async {
+    Hive.init(path);
   }
 
   Future<String> setToken(String result) async {

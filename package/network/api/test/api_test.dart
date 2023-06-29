@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:api/api.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -5,7 +7,8 @@ import 'package:storage_repository/storage_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await StorageRepository.init();
+  final directory = Directory.current.path;
+  await StorageRepository.init(directory);
   final storage = StorageRepository();
 
   group('Response API', () {

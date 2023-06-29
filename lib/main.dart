@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:api/api.dart';
 import 'package:flutter/material.dart';
 import 'package:home_repository/home_repository.dart';
@@ -7,11 +9,10 @@ import 'package:store/app/app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final directory = Directory.current.path;
 
   /// Init Have local storage
-  await StorageRepository.init();
-
-  /// Init API package
+  await StorageRepository.init(directory);
 
   final storage = StorageRepository();
   final apiRepository = ApiRepository(storageRepository: storage);
