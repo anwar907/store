@@ -5,4 +5,7 @@ abstract class StoreApiClient {
   Future<LoginModels> login({String? username, String? password});
 
   Future<ProductModels> fetchDataProduct();
+
+  Future<Product> submitProduct(
+      {String? name, String? pathImage, String? description});
 }

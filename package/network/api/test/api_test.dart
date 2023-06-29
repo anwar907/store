@@ -22,5 +22,13 @@ Future<void> main() async {
           .login(password: '', username: '');
       print(response.token);
     });
+
+    test('Response from endoiint submit product', () async {
+      final response = await ApiRepository(storageRepository: storage)
+          .submitProduct(
+              name: 'sample', description: 'sample des', pathImage: 'cek');
+
+      print('Cek ${response.imageUrl}');
+    });
   });
 }
