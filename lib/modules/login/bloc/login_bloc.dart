@@ -31,7 +31,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         LoginState(loginModels: value, status: GlobalStatusState.success),
       );
     } catch (e) {
-      emit(state.copyWith(status: GlobalStatusState.failed));
+      emit(
+        state.copyWith(
+          status: GlobalStatusState.failed,
+          message: 'Something wrong',
+        ),
+      );
     }
   }
 
