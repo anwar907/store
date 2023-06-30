@@ -7,11 +7,15 @@ class LoginState extends Equatable {
 
   LoginState copyWith({LoginModels? loginModels, GlobalStatusState? status}) {
     return LoginState(
-        loginModels: loginModels ?? this.loginModels,
-        status: status ?? this.status,);
+      loginModels: loginModels ?? this.loginModels,
+      status: status ?? this.status,
+    );
   }
 
   @override
   // TODO: implement props
-  List<Object?> get props => [loginModels, status];
+  List<Object?> get props => [
+        loginModels,
+        status,
+      ];
 }

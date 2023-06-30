@@ -41,9 +41,10 @@ dependencies:
     path: ./package/home_repository
   login_repository:
     path: ./package/login_repository
-  
+  path_provider: ^2.0.15
   storage_repository:
     path: ./package/storage_repository
+  
   
 
 dev_dependencies:

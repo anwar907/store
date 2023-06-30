@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:client/client.dart';
 import 'package:equatable/equatable.dart';
 import 'package:login_repository/login_repository.dart';
-import 'package:meta/meta.dart';
 
 part 'login_event.dart';
 part 'login_state.dart';
@@ -13,13 +12,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({required LoginRepository loginRepository})
       : _loginRepository = loginRepository,
         super(const LoginState()) {
-    on<LoginEventStarted>(mapEventToState);
+    on<LoginEvent>(mapEventToState);
   }
 
   final LoginRepository _loginRepository;
 
   Future<void> mapEventToState(
-    LoginEventStarted event,
+    LoginEvent event,
     Emitter<LoginState> emit,
   ) async {
     try {
@@ -28,16 +27,37 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         username: event.username,
       );
 
-      log('cek data${value.token}');
-
       emit(
-        state.copyWith(
-          loginModels: value,
-          status: GlobalStatusState.success,
-        ),
+        LoginState(loginModels: value, status: GlobalStatusState.success),
       );
     } catch (e) {
       emit(state.copyWith(status: GlobalStatusState.failed));
     }
+  }
+
+  @override
+  void onEvent(LoginEvent event) {
+    super.onEvent(event);
+    log(event.toString());
+  }
+
+  @override
+  void onError(Object error, StackTrace stackTrace) {
+    super.onError(error, stackTrace);
+    log(error.toString());
+  }
+
+  @override
+  void onTransition(Transition<LoginEvent, LoginState> transition) {
+    super.onTransition(transition);
+    log(transition.toString());
+  }
+
+  @override
+  void onChange(Change<LoginState> change) {
+    super.onChange(change);
+    log(change.toString());
+    log(change.currentState.toString());
+    log(change.nextState.toString());
   }
 }
